@@ -1,0 +1,10 @@
+<mat-drawer-container [hasBackdrop]="false">
+  <mat-drawer #drawer mode="side" [opened]="isLoggedIn">
+    <mat-list>
+      <a mat-list-item *ngFor="let item of links">{{item.text}}</a>
+    </mat-list>
+  </mat-drawer>
+  <mat-drawer-content>
+    <router-outlet></router-outlet>
+  </mat-drawer-content>
+</mat-drawer-container>

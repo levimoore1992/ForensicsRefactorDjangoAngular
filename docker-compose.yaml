@@ -21,10 +21,10 @@ services:
     environment:
       - PGADMIN_DEFAULT_EMAIL=dev@localhost
       - PGADMIN_DEFAULT_PASSWORD=password
-  dj:
-    container_name: backend-skeleton
+  dj-forensics:
+    container_name: forensics
     build: backend
-    command: sh -c "python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:80"
+    command: sh -c "python manage.py wait_for_db && python manage.py makemigrations && python manage.py migrate && python manage.py runserver 0.0.0.0:80"
     environment:
       - DB_HOST=db
       - DB_NAME=app
@@ -36,7 +36,7 @@ services:
       - "80:80"
     depends_on:
       - db
-  frontend:
+  ng-forensics:
     build:
       context: ./frontend
     ports:

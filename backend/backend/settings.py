@@ -29,11 +29,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'django.contrib.sites',
     'allauth',
+    'rest_auth',
     'rest_auth.registration',
     'rest_framework.authtoken',
     'allauth.account',
     'allauth.socialaccount',
     'backend',
+    'forensics'
 
 ]
 CORS_ORIGIN_ALLOW_ALL = True
