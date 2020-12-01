@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title>{{title}}</mat-card-title>
-  <mat-card-actions>
+  <mat-card-actions *ngIf="!loading">
     <button mat-button (click)="view='presentation'">View</button>
     <button mat-button (click)="view='data'">Data</button>
     <button mat-button (click)="download()">
@@ -8,7 +8,7 @@
       <div>Download</div>
     </button>
   </mat-card-actions>
-  <mat-card-content *ngIf="loading">
+  <mat-card-content *ngIf="loading" class="spinner-container">
     <mat-spinner></mat-spinner>
   </mat-card-content>
   <mat-card-content *ngIf="!loading">
@@ -22,7 +22,7 @@
       </div>
     </div>
     <div *ngIf="view==='data'">
-      <app-data-view-table [endpoint]="endpoint"></app-data-view-table>
+      <app-data-view-table [endpoint]="endpoint" [endpointPayload]="endpointPayload"></app-data-view-table>
     </div>
   </mat-card-content>
 </mat-card>

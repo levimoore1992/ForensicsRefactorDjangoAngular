@@ -1,9 +1,9 @@
 <div class="main">
-  <app-date-filters></app-date-filters>
+  <app-date-filters (startDateChange)="changeStartDate($event)" (endDateChange)="changeEndDate($event)"></app-date-filters>
 
   <mat-grid-list cols="3" rowHeight="300px">
-    <mat-grid-tile *ngFor="let tile of tileComponents" colspan="1" rowspan="1">
-      <app-data-viewer [endpoint]="tile.endpoint" [filters]="['date']" [title]="tile.title" [view]="tile.strView"></app-data-viewer>
+    <mat-grid-tile *ngFor="let tile of tileComponents" [colspan]="tile.cols" [rowspan]="tile.rows">
+      <app-data-viewer [endpoint]="tile.endpoint" [filters]="['date']" [title]="tile.title" [view]="tile.strView" [endpointPayload]="endpointPayload"></app-data-viewer>
     </mat-grid-tile>
   </mat-grid-list>
 

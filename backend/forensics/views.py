@@ -10,14 +10,19 @@ from rest_framework.views import APIView
 
 class GetCasesByDateView(APIView):
     def get(self, request, **kwargs):
-        start_date = datetime.strptime(request.GET.get('start_date'), '%m/%d/%Y')
-        end_date = datetime.strptime(request.GET.get('end_date'), '%m/%d/%Y')
+        start_date_value = request.GET.get('start_date', None)
+        end_date_value = request.GET.get('end_date', None)
 
-        total_days = end_date - start_date
+        if start_date_value and end_date_value:
+            start_date = datetime.strptime(start_date_value, '%m/%d/%Y')
+            end_date = datetime.strptime(end_date_value, '%m/%d/%Y')
+            total_days = end_date - start_date
 
-        cases = Case.objects.filter(open_date__gt=start_date,
-                                    open_date__lt=end_date)
-
+            cases = Case.objects.filter(open_date__gt=start_date,
+                                        open_date__lt=end_date)
+        else:
+            cases = Case.objects.all()
+            total_days = cases.order_by('open_date').first().open_date - cases.order_by('open_date').last().open_date
         serializer = CaseSerializer(cases, many=True)
 
         response = {
