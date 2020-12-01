@@ -20,14 +20,14 @@ class Case(models.Model):
     message = models.TextField(null=True)
     offenses = models.ManyToManyField('Offense', through='CaseOffense')
     agencies = models.ManyToManyField('Agency', through='CaseAgency')
-    restricted = models.NullBooleanField()
+    restricted = models.BooleanField()
     restricted_date = models.DateTimeField(null=True)
     dfs_district = models.CharField(max_length=3, null=True)
     dfs_psa = models.CharField(max_length=3, null=True)
-    dfs_juvenile = models.NullBooleanField()
-    dfs_iad = models.NullBooleanField()
+    dfs_juvenile = models.BooleanField()
+    dfs_iad = models.BooleanField()
     dfs_mcl = models.CharField(max_length=15, null=True)
-    dfs_permconsume = models.NullBooleanField()
+    dfs_permconsume = models.BooleanField()
     dfs_permconsdate = models.DateTimeField(null=True)
     geographic_area = models.CharField(max_length=30, null=True)
     division = models.CharField(max_length=30, null=True)
@@ -123,7 +123,7 @@ class Request(models.Model):
     turnaround_start = models.DateTimeField(null=True)
     turnaround_end = models.DateTimeField(null=True)
     # reason renamed to priority
-    priority = models.NullBooleanField()
+    priority = models.BooleanField()
     assigned_personnel = models.ForeignKey('LabPersonnel', to_field="lims_rep_id", null=True,
                                            related_name='assignedPersonnel', on_delete=models.PROTECT)
     reviewer_personnel = models.ForeignKey('LabPersonnel', to_field="lims_rep_id", null=True,
@@ -170,7 +170,7 @@ class CanceledRequest(models.Model):
     turnaround_start = models.DateTimeField(null=True)
     turnaround_end = models.DateTimeField(null=True)
     # reason renamed to priority
-    priority = models.NullBooleanField()
+    priority = models.BooleanField()
     assigned_personnel = models.ForeignKey('LabPersonnel', to_field="lims_rep_id", null=True, on_delete=models.PROTECT)
     requesting_agent_id = models.CharField(max_length=30, null=True)
     # adding service name and lab department name for faster queries
@@ -306,7 +306,7 @@ class Result(models.Model):
     evidence = models.ForeignKey('Evidence', to_field='lims_evidence_id', null=True, on_delete=models.PROTECT)
     lims_result_id = models.CharField(max_length=30, unique=True)
     digital_data = models.CharField(max_length=30, null=True)
-    is_narcotic = models.NullBooleanField()
+    is_narcotic = models.BooleanField()
 
 
 class NarcoticIdentification(models.Model):
@@ -324,30 +324,30 @@ class LFUResultExtension(models.Model):
     fbi_entry = models.DateTimeField(null=True)
     novaris_entry = models.DateTimeField(null=True)
     rafis_entry = models.DateTimeField(null=True)
-    afis_hit = models.NullBooleanField()
-    fbi_hit = models.NullBooleanField()
-    novaris_hit = models.NullBooleanField()
-    rafis_hit = models.NullBooleanField()
-    latent_identified = models.NullBooleanField()
+    afis_hit = models.BooleanField()
+    fbi_hit = models.BooleanField()
+    novaris_hit = models.BooleanField()
+    rafis_hit = models.BooleanField()
+    latent_identified = models.BooleanField()
     true_name = models.CharField(max_length=30, null=True)
     agency_id = models.CharField(max_length=30, null=True)
 
 
 class FEUResultExtension(models.Model):
     result = models.ForeignKey('Result', to_field='lims_result_id', on_delete=models.PROTECT)
-    nibin_lead = models.NullBooleanField()
-    nibin_result_verification = models.NullBooleanField()
+    nibin_lead = models.BooleanField()
+    nibin_result_verification = models.BooleanField()
     nibin_hit_count = models.IntegerField(null=True)
 
 
 class FEUAmmo(models.Model):
     evidence = models.ForeignKey('Evidence', to_field='lims_evidence_id', on_delete=models.PROTECT)
-    nibin_entry = models.NullBooleanField()
+    nibin_entry = models.BooleanField()
 
 
 class Ammo(models.Model):
     evidence = models.ForeignKey('Evidence', to_field='lims_evidence_id', on_delete=models.PROTECT)
-    nibin_entry = models.NullBooleanField()
+    nibin_entry = models.BooleanField()
 
 
 class FBUEvidenceExtension(models.Model):
@@ -499,7 +499,7 @@ class Vehicle(models.Model):
     license_num = models.CharField(max_length=30, null=True)
     vin = models.CharField(max_length=30, null=True)
     vin_location = models.CharField(max_length=30, null=True)
-    is_temptag = models.NullBooleanField()
+    is_temptag = models.BooleanField()
     vehicle_location = models.CharField(max_length=100, null=True)
     recovery_address = models.CharField(max_length=100, null=True)
     recovery_locality_position = models.CharField(max_length=30, null=True)
@@ -553,18 +553,18 @@ class Firearms(models.Model):
     groove_width = models.CharField(max_length=40, null=True)
     gun_action = models.CharField(max_length=40, null=True)
     capacity = models.CharField(max_length=30, null=True)
-    loaded = models.NullBooleanField()
+    loaded = models.BooleanField()
     manufacturer = models.CharField(max_length=40, null=True)
     gun_model = models.CharField(max_length=40, null=True)
     notes = models.TextField(null=True)
-    is_operational = models.NullBooleanField()
+    is_operational = models.BooleanField()
     serial_num = models.CharField(max_length=60, null=True)
     gun_type = models.CharField(max_length=40, null=True)
     land_width = models.CharField(max_length=40, null=True)
     land_num = models.IntegerField(null=True)
     live_round_num = models.IntegerField(null=True)
     spent_round_num = models.IntegerField(null=True)
-    is_safety_operational = models.NullBooleanField()
+    is_safety_operational = models.BooleanField()
     safety_type = models.CharField(max_length=40, null=True)
     trigger_pull = models.CharField(max_length=40, null=True)
     grip_type = models.CharField(max_length=40, null=True)
@@ -727,7 +727,7 @@ class OsticketStats(models.Model):
     status = models.CharField(max_length=30, null=True)
     state = models.CharField(max_length=30, null=True)
     staff_assigned = models.CharField(max_length=50, null=True)
-    isOverdue = models.NullBooleanField()
+    isOverdue = models.BooleanField()
     created_date = models.DateTimeField(null=True)
     closed_date = models.DateTimeField(null=True)
     response_date = models.DateTimeField(null=True)
