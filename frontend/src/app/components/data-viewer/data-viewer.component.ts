@@ -19,6 +19,7 @@ export class DataViewerComponent implements OnInit, OnChanges {
   @Input() startDate;
   @Input() endDate;
   loading: boolean = true;
+  @Input()displayedColumns: Object[];
 
 
 

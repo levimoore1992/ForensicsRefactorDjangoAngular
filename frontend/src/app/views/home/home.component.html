@@ -9,6 +9,10 @@
       view="presentation"
       [startDate]="startDate"
       [endDate]="endDate"
+      [displayedColumns]="[
+      {name:'case_id', title: 'Case Id'},
+       {name:'close_date', title: ' Close Date'}
+       ]"
     >
     </app-data-viewer>
 
@@ -19,6 +23,10 @@
     view="presentation"
     [startDate]="startDate"
     [endDate]="endDate"
+    [displayedColumns]="[
+    {name:'request_number', title: 'Request Number'},
+     {name:'request_date', title: 'Request Date'}
+     ]"
     >
     </app-data-viewer>
 
@@ -29,7 +37,24 @@
     view="presentation"
     [startDate]="startDate"
     [endDate]="endDate"
+    [displayedColumns]="[
+    {name: 'key_in_date', title: 'Entry Date'},
+    {name: 'evidence_number', title: 'Evidence #'}
+    ]"
     >
+    </app-data-viewer>
+  </div>
+
+  <div fxLayout="row" fxLayoutAlign="center stretch" >
+    <app-data-viewer
+    title="Backlog By Unit"
+    endpoint="get_backlog_by_unit"
+    type="chart"
+    view="presentation"
+    [startDate]="startDate"
+    [endDate]="endDate"
+    >
+
     </app-data-viewer>
   </div>
 

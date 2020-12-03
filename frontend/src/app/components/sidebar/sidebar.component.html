@@ -1,7 +1,16 @@
 <mat-drawer-container [hasBackdrop]="false">
   <mat-drawer #drawer mode="side" [opened]="isLoggedIn">
+    <img [src]="imgSrc" alt="" class="client-icon">
     <mat-list>
-      <a mat-list-item *ngFor="let item of links">{{item.text}}</a>
+<!--      <a mat-list-item *ngFor="let item of links">{{item.text}}</a>-->
+      <a mat-list-item>Home</a>
+      <a mat-list-item>Overview</a>
+      <a mat-list-item>DFS KPI's</a>
+      <a mat-list-item>Units</a>
+      <a mat-list-item>Offenses</a>
+      <a mat-list-item>Evidence</a>
+      <a mat-list-item>Maps</a>
+      <a mat-list-item>Suspects</a>
     </mat-list>
   </mat-drawer>
   <mat-drawer-content>

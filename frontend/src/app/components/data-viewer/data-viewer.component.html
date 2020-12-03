@@ -15,13 +15,10 @@
       <app-map *ngIf="type==='map'" [data]="data"></app-map>
       <app-linked-stat *ngIf="type==='linkedStats'" [stats]="data"></app-linked-stat>
       <app-stat *ngIf="type==='stats'" [stats]="data"></app-stat>
-      <div *ngIf="type==='chart'">
-        <app-summation [summationData]="data"></app-summation>
-        <app-chart [chartData]="data"></app-chart>
-      </div>
+      <app-chart *ngIf="type==='chart'" [chartData]="data"></app-chart>
     </div>
     <div *ngIf="view==='data'">
-      <app-data-view-table [data]="data.data"></app-data-view-table>
+      <app-data-view-table [data]="data.data" [displayedColumns]="displayedColumns"></app-data-view-table>
     </div>
   </mat-card-content>
 </mat-card>

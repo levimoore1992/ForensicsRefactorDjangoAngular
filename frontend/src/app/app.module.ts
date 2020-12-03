@@ -35,6 +35,12 @@ import {MatGridListModule} from "@angular/material/grid-list";
 import {FlexModule} from "@angular/flex-layout";
 import {MatTableModule} from "@angular/material/table";
 
+
+
+
+import { PlotlyViaCDNModule  } from 'angular-plotly.js';
+PlotlyViaCDNModule.setPlotlyVersion('latest');
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,7 +78,8 @@ import {MatTableModule} from "@angular/material/table";
     MatGridListModule,
     MatNativeDateModule,
     FlexModule,
-    MatTableModule
+    MatTableModule,
+    PlotlyViaCDNModule
   ],
   providers: [],
   bootstrap: [AppComponent]

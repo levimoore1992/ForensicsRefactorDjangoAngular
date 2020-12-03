@@ -9,3 +9,8 @@ mat-drawer{
 mat-drawer-content{
   width: 100%;
 }
+
+.client-icon{
+  height: 100px;
+  width: 100px;
+}

@@ -8,11 +8,17 @@ import {Payload} from "../../../interfaces/payload";
 })
 export class DataViewTableComponent implements OnInit {
  @Input() data;
-  displayedColumns = ['case_id', 'close_date'];
-  constructor() { }
+  @Input() displayedColumns;
+  columns;
+
+  constructor() {
+
+  }
 
   ngOnInit(): void {
-
+this.columns = this.displayedColumns.map(col => {
+    return col.name
+  })
   }
 
 }

@@ -93,3 +93,18 @@ class GetEvidenceByDateView(APIView):
         }
 
         return Response(response)
+
+
+class GetBacklogByUnitView(APIView):
+
+    def get(self, request, **kwargs):
+        start_date_value = request.GET.get('start_date', None)
+        end_date_value = request.GET.get('end_date', None)
+
+        if start_date_value and end_date_value:
+            start_date = datetime.strptime(start_date_value, '%m/%d/%Y')
+            end_date = datetime.strptime(end_date_value, '%m/%d/%Y')
+            total_days = end_date - start_date
+
+
+        return Response({'message': 'success'})
