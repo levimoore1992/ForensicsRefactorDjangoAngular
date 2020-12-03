@@ -9,13 +9,14 @@ export class DataService {
 
   constructor(private http: HttpClient) { }
 
-  getData(endpoint, payload){
-    const httpParams = new HttpParams();
+  getData(endpoint, urlParams){
+    const params = {};
+    if(urlParams.startDate !== undefined && urlParams.endDate !== undefined){
+        params['start_date'] = urlParams.startDate;
+        params['end_date'] =urlParams.endDate;
+    }
 
-    payload.hasOwnProperty('startDate') ? httpParams.set('start_date', payload.startDate): null;
-    payload.hasOwnProperty('endDate') ? httpParams.set('end_date', payload.endDate): null;
-
-    return this.http.get(environment.api + endpoint, {params: httpParams} )
+    return this.http.get(environment.api + endpoint, {params} )
   }
 
 }

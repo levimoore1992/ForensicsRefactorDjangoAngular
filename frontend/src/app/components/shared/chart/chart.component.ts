@@ -7,7 +7,6 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class ChartComponent implements OnInit {
   @Input() chartData;
-  @Input() chartLayout;
   constructor() { }
 
   ngOnInit(): void {

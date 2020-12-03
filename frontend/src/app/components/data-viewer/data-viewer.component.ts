@@ -12,37 +12,48 @@ export class DataViewerComponent implements OnInit, OnChanges {
   @Input() view: string = 'presentation';
   @Input() map: boolean = false;
   @Input() filters: [string];
-  @Input() data: {map_data: object, stats: object, summation: object, chart: object, chart_layout: object};
+  @Input() data: any;
   @Input() title: string;
   @Input() endpoint: string; //This was called chartName in original application
-  @Input() endpointPayload: Payload;
-
+  @Input() type: string;
+  @Input() startDate;
+  @Input() endDate;
   loading: boolean = true;
-  linkedStats: boolean;
-  stats: boolean;
-  chart: boolean;
-  summation: boolean;
 
 
 
-  constructor(private dataService: DataService) {}
+
+  constructor(private dataService: DataService) {
+
+  }
 
   ngOnChanges(changes: SimpleChanges): void {
-    this.loading = true;
-    this.dataService.getData(this.endpoint, this.endpointPayload).subscribe( res => {
 
-      this.loading = false
-    })
+    this.getData()
   }
 
   ngOnInit(): void {
-    this.dataService.getData(this.endpoint, this.endpointPayload).subscribe(res => {
-      console.log(res)
-      this.loading = false
-    })
+    if(this.type === undefined){
+      throw Error('Dataviewer component needs a type')
+    }
+    this.getData()
   }
 
   download() {
 
+  }
+
+  getData(){
+    const urlParams = {
+      startDate: this.startDate,
+      endDate: this.endDate
+    }
+
+
+    this.loading = true;
+    this.dataService.getData(this.endpoint, urlParams).subscribe(res => {
+      this.data = res;
+      this.loading = false
+    })
   }
 }

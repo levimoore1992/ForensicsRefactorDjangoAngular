@@ -7,8 +7,8 @@ import {MatDatepickerInputEvent} from "@angular/material/datepicker";
   styleUrls: ['./date-filters.component.css']
 })
 export class DateFiltersComponent implements OnInit {
-  @Output() startDateChange: EventEmitter<Date> = new EventEmitter;
-  @Output() endDateChange: EventEmitter<Date> = new EventEmitter;
+  @Output() startDateChange: EventEmitter<string> = new EventEmitter;
+  @Output() endDateChange: EventEmitter<string> = new EventEmitter;
   selected: string = 'custom';
 
   constructor() { }
@@ -20,14 +20,24 @@ export class DateFiltersComponent implements OnInit {
 
     switch (type){
       case 'start':
-        this.startDateChange.emit(event.value);
+        let st = this.convertDate(event.value);
+        this.startDateChange.emit(st);
         break;
 
       case 'end':
-          this.endDateChange.emit(event.value);
+          let ed = this.convertDate(event.value);
+
+          this.endDateChange.emit(ed);
         break
     }
 
 
+  }
+
+  convertDate(value: Date): string {
+
+    return (value.getMonth() + 1) +
+    "/" +  value.getDate() +
+    "/" +  value.getFullYear();
   }
 }

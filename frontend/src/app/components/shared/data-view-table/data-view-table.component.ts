@@ -7,11 +7,12 @@ import {Payload} from "../../../interfaces/payload";
   styleUrls: ['./data-view-table.component.css']
 })
 export class DataViewTableComponent implements OnInit {
-  @Input() endpoint: string;
-  @Input() endpointPayload: Payload //This was called chartName in previous iteration of application
+ @Input() data;
+  displayedColumns = ['case_id', 'close_date'];
   constructor() { }
 
   ngOnInit(): void {
+
   }
 
 }
