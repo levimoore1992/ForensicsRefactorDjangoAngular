@@ -5,4 +5,10 @@
 
 mat-card-title{
   text-align: center;
+
+}
+
+mat-card-actions{
+  border-top: 1px solid darkgrey;
+  border-bottom: 1px solid darkgrey
 }

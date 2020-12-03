@@ -1,8 +1,9 @@
 .total{
-  font-size: 24px;
-  margin: 5px;
+  font-size: 1em;
+  font-weight: bold;
 }
 
 .value{
-  font-size: 18px;
+  font-size: 4rem;
+  line-height: 1em;
 }

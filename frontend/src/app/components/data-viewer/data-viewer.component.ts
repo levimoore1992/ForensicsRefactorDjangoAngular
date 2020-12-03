@@ -47,7 +47,7 @@ export class DataViewerComponent implements OnInit, OnChanges {
     const urlParams = {
       startDate: this.startDate,
       endDate: this.endDate
-    }
+    };
 
 
     this.loading = true;

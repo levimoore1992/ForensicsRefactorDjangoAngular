@@ -1,15 +1,34 @@
 <div class="main">
   <app-date-filters (startDateChange)="changeStartDate($event)" (endDateChange)="changeEndDate($event)"></app-date-filters>
 
-  <div fxLayout="row" fxLayoutAlign="space-around center">
+  <div fxLayout="row" fxLayoutAlign="space-evenly center">
     <app-data-viewer
       title="Cases"
       [endpoint]="'cases_all_by_date'"
       type="stats"
-      [filters]="['date']"
       view="presentation"
       [startDate]="startDate"
       [endDate]="endDate"
+    >
+    </app-data-viewer>
+
+    <app-data-viewer
+    title="Service Request"
+    endpoint="service_requests_by_date"
+    type="stats"
+    view="presentation"
+    [startDate]="startDate"
+    [endDate]="endDate"
+    >
+    </app-data-viewer>
+
+    <app-data-viewer
+    title="Evidence"
+    endpoint="evidence_by_date"
+    type="stats"
+    view="presentation"
+    [startDate]="startDate"
+    [endDate]="endDate"
     >
     </app-data-viewer>
   </div>
