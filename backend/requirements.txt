@@ -5,4 +5,3 @@ django-cors-headers
 django-rest-auth
 django-allauth
 django-registration
-dateutil

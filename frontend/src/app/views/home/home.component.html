@@ -47,7 +47,7 @@
       </app-data-viewer>
     </div>
 
-    <div fxLayout="row" fxLayoutAlign="center stretch">
+  <div fxLayout="row" fxLayoutAlign="center stretch">
     <app-data-viewer
     title="Backlog By Unit"
     endpoint="get_backlog_by_unit"
@@ -63,6 +63,21 @@
     >
     </app-data-viewer>
   </div>
+
+  <div fxLayout="row" fxLayoutAlign="center stretch">
+    <app-dataviewer
+      title="Caseload By Unit"
+      endpoint="caseload_by_unit"
+      [startDate]="startDate"
+      [endDate]="endDate"
+      [displayedColumns]="[
+
+      ]"
+    >
+
+    </app-dataviewer>
+  </div>
+
 
   </div>
 

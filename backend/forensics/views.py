@@ -156,3 +156,9 @@ class GetBacklogByUnitView(APIView, ChartMixin):
                 chart_data[unit]['x'].append(self.chart_date(backlog_date))
                 chart_data[unit]['y'].append(count)
         return [v for v in chart_data.values()]
+
+
+class GetCaseloadByUnit(APIView, ChartMixin):
+
+    def get(self, request, **kwargs):
+        pass
