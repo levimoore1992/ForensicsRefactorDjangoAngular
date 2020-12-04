@@ -126,7 +126,7 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
-
+    'DATETIME_FORMAT': "%m/%d/%Y",
 }
 
 # Static files (CSS, JavaScript, Images)

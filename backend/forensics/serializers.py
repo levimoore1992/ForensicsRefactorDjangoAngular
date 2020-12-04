@@ -13,6 +13,7 @@ class ServiceRequestsSerializer(serializers.ModelSerializer):
         model = Request
         fields = '__all__'
 
+
 class EvidenceSerializer(serializers.ModelSerializer):
     class Meta:
         model = Evidence

@@ -18,25 +18,16 @@ export class DataViewerComponent implements OnInit, OnChanges {
   @Input() type: string;
   @Input() startDate;
   @Input() endDate;
-  loading: boolean = true;
   @Input()displayedColumns: Object[];
+  loading: boolean = true;
 
-
-
-
-  constructor(private dataService: DataService) {
-
-  }
+  constructor(private dataService: DataService) {}
 
   ngOnChanges(changes: SimpleChanges): void {
-
     this.getData()
   }
 
   ngOnInit(): void {
-    if(this.type === undefined){
-      throw Error('Dataviewer component needs a type')
-    }
     this.getData()
   }
 

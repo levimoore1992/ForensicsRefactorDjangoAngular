@@ -12,3 +12,8 @@ mat-card-actions{
   border-top: 1px solid darkgrey;
   border-bottom: 1px solid darkgrey
 }
+
+
+.chart-card{
+  width: 100%
+}

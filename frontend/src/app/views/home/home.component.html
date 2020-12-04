@@ -1,51 +1,53 @@
 <div class="main">
   <app-date-filters (startDateChange)="changeStartDate($event)" (endDateChange)="changeEndDate($event)"></app-date-filters>
 
-  <div fxLayout="row" fxLayoutAlign="space-evenly center">
-    <app-data-viewer
-      title="Cases"
-      [endpoint]="'cases_all_by_date'"
+  <div fxLayout="column" fxLayoutAlign="space-between">
+
+    <div fxLayout="row" fxLayoutAlign="space-evenly center">
+      <app-data-viewer
+        title="Cases"
+        [endpoint]="'cases_all_by_date'"
+        type="stats"
+        view="presentation"
+        [startDate]="startDate"
+        [endDate]="endDate"
+        [displayedColumns]="[
+        {name:'case_id', title: 'Case Id'},
+         {name:'close_date', title: ' Close Date'}
+         ]"
+      >
+      </app-data-viewer>
+
+      <app-data-viewer
+      title="Service Request"
+      endpoint="service_requests_by_date"
       type="stats"
       view="presentation"
       [startDate]="startDate"
       [endDate]="endDate"
       [displayedColumns]="[
-      {name:'case_id', title: 'Case Id'},
-       {name:'close_date', title: ' Close Date'}
+      {name:'request_number', title: 'Request Number'},
+       {name:'request_date', title: 'Request Date'}
        ]"
-    >
-    </app-data-viewer>
+      >
+      </app-data-viewer>
 
-    <app-data-viewer
-    title="Service Request"
-    endpoint="service_requests_by_date"
-    type="stats"
-    view="presentation"
-    [startDate]="startDate"
-    [endDate]="endDate"
-    [displayedColumns]="[
-    {name:'request_number', title: 'Request Number'},
-     {name:'request_date', title: 'Request Date'}
-     ]"
-    >
-    </app-data-viewer>
+      <app-data-viewer
+      title="Evidence"
+      endpoint="evidence_by_date"
+      type="stats"
+      view="presentation"
+      [startDate]="startDate"
+      [endDate]="endDate"
+      [displayedColumns]="[
+      {name: 'key_in_date', title: 'Entry Date'},
+      {name: 'evidence_number', title: 'Evidence #'}
+      ]"
+      >
+      </app-data-viewer>
+    </div>
 
-    <app-data-viewer
-    title="Evidence"
-    endpoint="evidence_by_date"
-    type="stats"
-    view="presentation"
-    [startDate]="startDate"
-    [endDate]="endDate"
-    [displayedColumns]="[
-    {name: 'key_in_date', title: 'Entry Date'},
-    {name: 'evidence_number', title: 'Evidence #'}
-    ]"
-    >
-    </app-data-viewer>
-  </div>
-
-  <div fxLayout="row" fxLayoutAlign="center stretch" >
+    <div fxLayout="row" fxLayoutAlign="center stretch">
     <app-data-viewer
     title="Backlog By Unit"
     endpoint="get_backlog_by_unit"
@@ -53,9 +55,15 @@
     view="presentation"
     [startDate]="startDate"
     [endDate]="endDate"
+    [displayedColumns]="[
+    {name: 'request_date', title: 'Request Date'},
+    {name: 'assign_date', title: 'Assign Date'},
+    {name: 'lab_dept_abbrev', title: 'Department'}
+    ]"
     >
-
     </app-data-viewer>
+  </div>
+
   </div>
 
 </div>

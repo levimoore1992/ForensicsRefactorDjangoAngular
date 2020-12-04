@@ -1,10 +1,11 @@
-<mat-card>
+<mat-card [ngClass]="{'chart-card': type==='chart'}">
   <mat-card-title>{{title}}</mat-card-title>
   <mat-card-actions *ngIf="!loading">
     <button mat-button (click)="view='presentation'">View</button>
     <button mat-button (click)="view='data'">Data</button>
+    <div fxFlex></div>
     <button mat-button (click)="download()">
-      <mat-icon >cloud_download</mat-icon>
+      <mat-icon>cloud_download</mat-icon>
     </button>
   </mat-card-actions>
   <mat-card-content *ngIf="loading" class="spinner-container">
