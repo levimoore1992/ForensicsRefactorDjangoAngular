@@ -1,7 +1,9 @@
-Django
-djangorestframework
-psycopg2
-django-cors-headers
+django==2.1.4
+djangorestframework==3.7.7
+django-cors-headers==3.4.0
 django-rest-auth
 django-allauth
-django-registration
+django-registration==3.0.0
+pyodbc
+django-pyodbc-azure
+
