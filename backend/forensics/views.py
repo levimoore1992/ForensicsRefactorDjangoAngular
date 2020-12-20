@@ -135,18 +135,19 @@ class GetBacklogByUnitView(APIView, ChartMixin):
         date_counts = defaultdict(lambda: defaultdict(int))
 
         for result in self.serialized_data:
+            try:
+                dept = result['lab_dept_abbrev']
+                assigned = datetime.strptime(result['assign_date'], '%m/%d/%Y')
+                request = datetime.strptime(result['request_date'], '%m/%d/%Y')
+                if assigned is None:
+                    assigned = self.end_date + timedelta(days=1)
 
-            dept = result['lab_dept_abbrev']
-            assigned = datetime.strptime(result['assign_date'], '%m/%d/%Y')
-            request = datetime.strptime(result['request_date'], '%m/%d/%Y')
-            if assigned is None:
-                assigned = self.end_date + timedelta(days=1)
-
-            in_backlog = assigned - request
-            for day in range(in_backlog.days):
-                day = request + timedelta(days=day)
-                date_counts[dept][day] += 1
-
+                in_backlog = assigned - request
+                for day in range(in_backlog.days):
+                    day = request + timedelta(days=day)
+                    date_counts[dept][day] += 1
+            except:
+                continue
         for unit in date_counts:
 
             chart_data[unit]['name'] = unit

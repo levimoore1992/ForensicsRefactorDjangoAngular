@@ -78,12 +78,17 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql',
-        'HOST': os.environ.get('DB_HOST'),
-        'NAME': os.environ.get('DB_NAME'),
-        'USER': os.environ.get('DB_USER'),
-        'PASSWORD': os.environ.get('DB_PASS'),
-    }
+        'ENGINE': 'sql_server.pyodbc',
+        'NAME': 'justiiice',
+        'USER': 'judge',
+        'PASSWORD': 'Hammer0fjustice1776',
+        'HOST': 'justiiice-dc.database.windows.net',
+        'OPTIONS': {
+            'driver': 'ODBC Driver 17 for SQL Server',
+            # 'unicode_results': True,
+            # 'host_is_server': True,
+        },
+    },
 }
 
 
